@@ -219,3 +219,7 @@ Lorsque vous avez terminé toutes les étapes, partagez le lien de votre dépôt
 Si vous souhaitez aller plus loin, vous pouvez ajouter un cas d'utilisation supplémentaire. Par exemple :
 - "En tant qu'utilisateur, je souhaite ajouter une personne dans l'annuaire."
 - "En tant qu'utilisateur, je souhaite rechercher une personne par son nom."
+
+
+### License 
+Creative Commons for textual content and MIT for code.
