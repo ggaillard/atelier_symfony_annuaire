@@ -222,4 +222,4 @@ Si vous souhaitez aller plus loin, vous pouvez ajouter un cas d'utilisation supp
 
 
 ### License 
-Creative Commons for textual content and MIT for code.
+Creative Commons pour le texte et MIT pour le code.
