@@ -112,6 +112,36 @@ symfony console make:controller AnnuaireController
 ```
 Dans le fichier généré, modifiez la méthode pour récupérer la liste des personnes depuis la base de données et les afficher dans une vue.
 
+```php
+use App\Entity\Personne; // Importez votre entité Personne ici
+use App\Repository\PersonneRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class AnnuaireController extends AbstractController
+{
+    private $personnesRepository;
+
+    public function __construct(PersonneRepository $personnesRepository)
+    {
+        $this->personnesRepository = $personnesRepository;
+    }
+
+    #[Route('/annuaire', name: 'annuaire_liste_personnes')]
+    public function listePersonnes(): Response
+    {
+        // Récupérer toutes les personnes depuis la base de données
+        $personnes = $this->personnesRepository->findAll();
+
+        // Passer les personnes récupérées à la vue pour l'affichage
+        return $this->render('annuaire/liste_personnes.html.twig', [
+            'personnes' => $personnes,
+        ]);
+    }
+}
+```
+
 #### Vérification :
 Lancez le serveur Symfony et accédez à l'URL `/annuaire` dans votre navigateur pour vérifier que la page s'affiche correctement.
 
