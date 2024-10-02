@@ -32,8 +32,14 @@ Avant de commencer à coder, vous allez créer un diagramme de cas d'utilisation
    }
    @enduml
    ```
-
-4. **Générer le diagramme** :
+4. ## Installation de Java ** :
+   Avant de générer des diagrammes avec PlantUML, assurez-vous que Java est installé sur votre système.
+  #### Vérification de l'installation de Java :
+    Exécutez la commande suivante pour vérifier si Java est déjà installé :
+    ```bash
+    java -version
+    ```
+5. **Générer le diagramme** :
    Utilisez PlantUML pour générer un fichier PNG à partir du fichier `.puml`. Exécutez la commande suivante pour créer le fichier PNG du diagramme :
    ```bash
    plantuml docs/diagrams/use_case.puml
@@ -41,7 +47,7 @@ Avant de commencer à coder, vous allez créer un diagramme de cas d'utilisation
 
    Le fichier `use_case.png` sera généré dans le répertoire `docs/diagrams`.
 
-5. **Vérification** :
+6. **Vérification** :
    Ouvrez le fichier `docs/diagrams/use_case.png` pour vérifier que le diagramme de cas d'utilisation a été correctement généré.
 
 ---
@@ -145,7 +151,6 @@ class AnnuaireController extends AbstractController
 #### Vérification :
 Lancez le serveur Symfony et accédez à l'URL `/annuaire` dans votre navigateur pour vérifier que la page s'affiche correctement.
 
----
 
 ### 5. Création de la vue
 
