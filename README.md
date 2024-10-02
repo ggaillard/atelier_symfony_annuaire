@@ -32,11 +32,11 @@ Avant de commencer à coder, vous allez créer un diagramme de cas d'utilisation
    }
    @enduml
    ```
-4. ## Installation de Java ** :
+4. **Installation de Java** :
    Avant de générer des diagrammes avec PlantUML, assurez-vous que Java est installé sur votre système.
-  #### Vérification de l'installation de Java :
-    Exécutez la commande suivante pour vérifier si Java est déjà installé :
-    ```bash
+   #### Vérification de l'installation de Java :
+   Exécutez la commande suivante pour vérifier si Java est déjà installé :
+   ```bash
     java -version
     ```
 5. **Générer le diagramme** :
@@ -151,6 +151,7 @@ class AnnuaireController extends AbstractController
 #### Vérification :
 Lancez le serveur Symfony et accédez à l'URL `/annuaire` dans votre navigateur pour vérifier que la page s'affiche correctement.
 
+---
 
 ### 5. Création de la vue
 
@@ -176,7 +177,6 @@ symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('
 symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Santini', 'Jean-Michel')"
 ```
 
-```
 Rafraîchissez la page `/annuaire` pour vérifier que les noms et prénoms s'affichent correctement.
 
 ---
