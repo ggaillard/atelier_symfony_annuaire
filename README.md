@@ -149,7 +149,7 @@ Lancez le serveur Symfony et accédez à l'URL `/annuaire` dans votre navigateur
 
 ### 5. Création de la vue
 
-Créez une vue `index.html.twig` dans le dossier `templates/annuaire` pour afficher la liste des personnes :
+Créez une vue `liste_personnes.html.twig` dans le dossier `templates/annuaire` pour afficher la liste des personnes :
 ```twig
 <h1>Annuaire des personnes</h1>
 
