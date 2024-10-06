@@ -1,5 +1,5 @@
 
-# Extension du cas d'utilisation : Bonus
+# Extension du cas d'utilisation :
 
 ## Objectif
 L'objectif de cette extension est d'ajouter des fonctionnalités supplémentaires à l'application d'annuaire.
