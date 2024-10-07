@@ -262,4 +262,4 @@ Accédez à l'URL `/annuaire/ajouter` et ajoutez une nouvelle personne.
 Accédez à l'URL `/annuaire/recherche?nom=NomCherche` pour vérifier que la recherche fonctionne.
 
 ### Conclusion
-Avec ces étapes, vous aurez ajouté plusieurs fonctionnalités bonus à votre application. Vous pouvez tester et valider chaque fonctionnalité au fur et à mesure pour vous assurer que tout fonctionne correctement.
+Avec ces étapes, vous aurez ajouté plusieurs fonctionnalités à votre application. Vous pouvez tester et valider chaque fonctionnalité au fur et à mesure pour vous assurer que tout fonctionne correctement.
