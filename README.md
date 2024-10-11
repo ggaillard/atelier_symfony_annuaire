@@ -1,54 +1,58 @@
 # Atelier : Création d'une application Symfony pour un annuaire
+## Objectif
 
-## Objectif :
 L'objectif de cet atelier est de réaliser une application Symfony simple permettant d'afficher une liste de personnes avec leur prénom et nom, à partir d'une base de données. L'atelier commence par la création d'un diagramme de cas d'utilisation pour modéliser les interactions de l'utilisateur avec l'application.
 
 ## Étape 1 : Création d'un diagramme de cas d'utilisation avec PlantUML
 
 Avant de commencer à coder, vous allez créer un diagramme de cas d'utilisation pour modéliser l'interaction de l'utilisateur avec l'application d'annuaire.
 
-"En tant qu'utilisateur, je souhaite consulter la liste des personnes dans l'annuaire."
+> "En tant qu'utilisateur, je souhaite consulter la liste des personnes dans l'annuaire."
 
-### Instructions :
-1. **Créer un répertoire pour les diagrammes** :
-   Dans le dossier de votre projet, créez un répertoire `docs/diagrams` pour stocker les diagrammes UML que vous allez générer.
-   ```bash
-   mkdir -p docs/diagrams
-   ```
+### Instructions
 
-2. **Créer le fichier PlantUML** :
-   Créez un fichier `use_case.puml` dans le répertoire `docs/diagrams` :
-   ```bash
-   touch docs/diagrams/use_case.puml
-   ```
+1. **Créer un répertoire pour les diagrammes**  
+    Dans le dossier de votre projet, créez un répertoire `docs/diagrams` pour stocker les diagrammes UML que vous allez générer.
+    ```bash
+    mkdir -p docs/diagrams
+    ```
 
-3. **Ajouter le diagramme de cas d'utilisation** :
-   Éditez le fichier `use_case.puml` et ajoutez le code suivant pour modéliser un simple cas d'utilisation :
-   ```plantuml
-   @startuml
-   actor Utilisateur
-   rectangle Annuaire {
-       Utilisateur --> (Consulter la liste des personnes)
-   }
-   @enduml
-   ```
-4. **Installation de Java** :
-   Avant de générer des diagrammes avec PlantUML, assurez-vous que Java est installé sur votre système.
-   #### Vérification de l'installation de Java :
-   Exécutez la commande suivante pour vérifier si Java est déjà installé :
-   ```bash
+2. **Créer le fichier PlantUML**  
+    Créez un fichier `use_case.puml` dans le répertoire `docs/diagrams` :
+    ```bash
+    touch docs/diagrams/use_case.puml
+    ```
+
+3. **Ajouter le diagramme de cas d'utilisation**  
+    Éditez le fichier `use_case.puml` et ajoutez le code suivant pour modéliser un simple cas d'utilisation :
+    ```plantuml
+    @startuml
+    actor Utilisateur
+    rectangle Annuaire {
+         Utilisateur --> (Consulter la liste des personnes)
+    }
+    @enduml
+    ```
+
+4. **Installation de Java**  
+    Avant de générer des diagrammes avec PlantUML, assurez-vous que Java est installé sur votre système.
+
+    #### Vérification de l'installation de Java
+    Exécutez la commande suivante pour vérifier si Java est déjà installé :
+    ```bash
     java -version
     ```
-5. **Générer le diagramme** :
-   Utilisez PlantUML pour générer un fichier PNG à partir du fichier `.puml`. Exécutez la commande suivante pour créer le fichier PNG du diagramme :
-   ```bash
-   plantuml docs/diagrams/use_case.puml
-   ```
 
-   Le fichier `use_case.png` sera généré dans le répertoire `docs/diagrams`.
+5. **Générer le diagramme**  
+    Utilisez PlantUML pour générer un fichier PNG à partir du fichier `.puml`. Exécutez la commande suivante pour créer le fichier PNG du diagramme :
+    ```bash
+    plantuml docs/diagrams/use_case.puml
+    ```
 
-6. **Vérification** :
-   Ouvrez le fichier `docs/diagrams/use_case.png` pour vérifier que le diagramme de cas d'utilisation a été correctement généré.
+    Le fichier `use_case.png` sera généré dans le répertoire `docs/diagrams`.
+
+6. **Vérification**  
+    Ouvrez le fichier `docs/diagrams/use_case.png` pour vérifier que le diagramme de cas d'utilisation a été correctement généré.
 
 ---
 
@@ -63,18 +67,20 @@ Créez un nouveau projet Symfony avec la commande suivante :
 symfony new annuaire --full
 cd annuaire
 ```
-#### Vérification :
+
+#### Vérification
 Lancez le serveur Symfony pour vérifier que le projet a été correctement créé :
 ```bash
 symfony server:start  // affiche le log dans le terminal
 ```
-ou 
-
+ou
 ```bash
-symfony serve -d   // Serveur en arrière plan 
+symfony serve -d   // Serveur en arrière plan
 ```
 Accédez à `http://localhost:8000` dans votre navigateur et vérifiez que la page d'accueil Symfony s'affiche.
+
 ---
+
 ### 2. Configuration de la base de données
 
 #### Utilisation de MySQL
@@ -104,7 +110,7 @@ symfony console make:entity Personne
 ```
 Dans le fichier généré, ajoutez les champs pour le nom et le prénom.
 
-#### Vérification :
+#### Vérification
 Générez une migration pour créer la table `personne` dans la base de données :
 ```bash
 symfony console make:migration
@@ -135,28 +141,28 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AnnuaireController extends AbstractController
 {
-    private $personnesRepository;
+     private $personnesRepository;
 
-    public function __construct(PersonneRepository $personnesRepository)
-    {
-        $this->personnesRepository = $personnesRepository;
-    }
+     public function __construct(PersonneRepository $personnesRepository)
+     {
+          $this->personnesRepository = $personnesRepository;
+     }
 
-    #[Route('/annuaire', name: 'liste_personnes')]
-    public function listePersonnes(): Response
-    {
-        // Récupérer toutes les personnes depuis la base de données
-        $personnes = $this->personnesRepository->findAll();
+     #[Route('/annuaire', name: 'liste_personnes')]
+     public function listePersonnes(): Response
+     {
+          // Récupérer toutes les personnes depuis la base de données
+          $personnes = $this->personnesRepository->findAll();
 
-        // Passer les personnes récupérées à la vue pour l'affichage
-        return $this->render('annuaire/liste_personnes.html.twig', [
-            'personnes' => $personnes,
-        ]);
-    }
+          // Passer les personnes récupérées à la vue pour l'affichage
+          return $this->render('annuaire/liste_personnes.html.twig', [
+                'personnes' => $personnes,
+          ]);
+     }
 }
 ```
 
-#### Vérification :
+#### Vérification
 Lancez le serveur Symfony et accédez à l'URL `/annuaire_liste_personnes` dans votre navigateur pour vérifier que la page s'affiche correctement.
 
 ---
@@ -168,16 +174,15 @@ Créez une vue `liste_personnes.html.twig` dans le dossier `templates/annuaire` 
 <h1>Annuaire des personnes</h1>
 
 <ul>
-    {% for personne in personnes %}
-        <li>{{ personne.prenom }} {{ personne.nom }}</li>
-    {% endfor %}
+     {% for personne in personnes %}
+          <li>{{ personne.prenom }} {{ personne.nom }}</li>
+     {% endfor %}
 </ul>
 ```
 
-#### Vérification :
+#### Vérification
 Ajoutez des personnes dans la base de données via une commande SQL :
 ```bash
-
 symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Platini', 'Michel');"
 symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Rocheteau', 'Dominique');"
 symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Revelli', 'Hervé');"
@@ -219,22 +224,21 @@ use Faker\Factory;
 
 class PersonneFixtures extends Fixture
 {
-    public function load(ObjectManager $manager): void
-    {
-        $faker = Factory::create();
+     public function load(ObjectManager $manager): void
+     {
+          $faker = Factory::create();
 
-        for ($i = 1; $i <= 10; $i++) {
-            $personne = new Personne();
-            $personne->setPrenom($faker->firstName);
-            $personne->setNom($faker->lastName);
-            $manager->persist($personne);
-        }
+          for ($i = 1; $i <= 10; $i++) {
+                $personne = new Personne();
+                $personne->setPrenom($faker->firstName);
+                $personne->setNom($faker->lastName);
+                $manager->persist($personne);
+          }
 
-        $manager->flush();
-    }
+          $manager->flush();
+     }
 }
 ```
-
 
 ### 3. Charger les fixtures dans la base de données
 
@@ -243,7 +247,7 @@ Exécutez la commande suivante pour charger les fixtures dans la base de donnée
 symfony console doctrine:fixtures:load
 ```
 
-#### Vérification :
+#### Vérification
 Une fois les fixtures chargées, accédez de nouveau à la page `/annuaire` pour vérifier que la liste des personnes est correctement affichée.
 
 ---
@@ -260,11 +264,12 @@ Lorsque vous avez terminé toutes les étapes, partagez le lien de votre dépôt
 ### Bonus (optionnel) : Extension du cas d'utilisation
 
 Si vous souhaitez aller plus loin, vous pouvez ajouter un cas d'utilisation supplémentaire. Par exemple :
-- "En tant qu'utilisateur, je souhaite ajouter l'adresse  mail.
+- "En tant qu'utilisateur, je souhaite ajouter l'adresse mail."
 - "En tant qu'utilisateur, je souhaite ajouter une personne dans l'annuaire."
 - "En tant qu'utilisateur, je souhaite rechercher une personne par son nom."
 
 ---
 
-### License 
+### License
+
 Creative Commons pour le texte et MIT pour le code.
