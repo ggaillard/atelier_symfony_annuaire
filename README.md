@@ -60,34 +60,41 @@ Maintenant que vous avez modélisé le cas d'utilisation de votre application, v
 
 Créez un nouveau projet Symfony avec la commande suivante :
 ```bash
-symfony new annuaire --webapp
+symfony new annuaire --full
 cd annuaire
 ```
-
 #### Vérification :
 Lancez le serveur Symfony pour vérifier que le projet a été correctement créé :
 ```bash
-symfony server:start
+symfony server:start  // affiche le log dans le terminal
+```
+ou 
+
+```bash
+symfony serve -d   // Serveur en arrière plan 
 ```
 Accédez à `http://localhost:8000` dans votre navigateur et vérifiez que la page d'accueil Symfony s'affiche.
-
 ---
-
 ### 2. Configuration de la base de données
 
-Configurez votre projet pour utiliser PostgreSQL. Modifiez le fichier `.env` pour définir les informations de connexion à votre base de données PostgreSQL :
+#### Utilisation de MySQL
+
+Si vous préférez utiliser MySQL, modifiez le fichier `.env.local` pour définir les informations de connexion à votre base de données MySQL :
 ```env
-DATABASE_URL="postgresql://db_user:db_password@127.0.0.1:5432/annuaire"
+DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/annuaire"
 ```
 
-#### Vérification :
+Vérifiez si MySQL est installé sur votre machine Windows :
+```bash
+mysql --version
+```
+
 Après la configuration, créez la base de données en utilisant la commande suivante :
 ```bash
 symfony console doctrine:database:create
 ```
-Vérifiez que la base de données est bien créée sans erreurs.
 
----
+Vérifiez que la base de données est bien créée sans erreurs.
 
 ### 3. Création de l'entité `Personne`
 
@@ -119,6 +126,7 @@ symfony console make:controller AnnuaireController
 Dans le fichier généré, modifiez la méthode pour récupérer la liste des personnes depuis la base de données et les afficher dans une vue.
 
 ```php
+<?php
 use App\Entity\Personne; // Importez votre entité Personne ici
 use App\Repository\PersonneRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -134,7 +142,7 @@ class AnnuaireController extends AbstractController
         $this->personnesRepository = $personnesRepository;
     }
 
-    #[Route('/annuaire', name: 'annuaire_liste_personnes')]
+    #[Route('/annuaire', name: 'liste_personnes')]
     public function listePersonnes(): Response
     {
         // Récupérer toutes les personnes depuis la base de données
@@ -149,7 +157,7 @@ class AnnuaireController extends AbstractController
 ```
 
 #### Vérification :
-Lancez le serveur Symfony et accédez à l'URL `/annuaire` dans votre navigateur pour vérifier que la page s'affiche correctement.
+Lancez le serveur Symfony et accédez à l'URL `/annuaire_liste_personnes` dans votre navigateur pour vérifier que la page s'affiche correctement.
 
 ---
 
@@ -170,11 +178,11 @@ Créez une vue `liste_personnes.html.twig` dans le dossier `templates/annuaire` 
 Ajoutez des personnes dans la base de données via une commande SQL :
 ```bash
 
-symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Platini', 'Michel')"
-symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Rocheteau', 'Dominique')"
-symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Revelli', 'Hervé')"
-symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Janvion', 'Gérard')"
-symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Santini', 'Jean-Michel')"
+symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Platini', 'Michel');"
+symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Rocheteau', 'Dominique');"
+symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Revelli', 'Hervé');"
+symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Janvion', 'Gérard');"
+symfony console doctrine:query:sql "INSERT INTO personne (nom, prenom) VALUES ('Santini', 'Jean-Michel');"
 ```
 
 Rafraîchissez la page `/annuaire` pour vérifier que les noms et prénoms s'affichent correctement.
@@ -252,6 +260,7 @@ Lorsque vous avez terminé toutes les étapes, partagez le lien de votre dépôt
 ### Bonus (optionnel) : Extension du cas d'utilisation
 
 Si vous souhaitez aller plus loin, vous pouvez ajouter un cas d'utilisation supplémentaire. Par exemple :
+- "En tant qu'utilisateur, je souhaite ajouter l'adresse  mail.
 - "En tant qu'utilisateur, je souhaite ajouter une personne dans l'annuaire."
 - "En tant qu'utilisateur, je souhaite rechercher une personne par son nom."
 
