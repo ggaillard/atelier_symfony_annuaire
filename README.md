@@ -271,6 +271,7 @@ symfony console doctrine:fixtures:load
 Une fois les fixtures chargées, accédez de nouveau à la page `/annuaire` pour vérifier que la liste des personnes est correctement affichée.
 ```
 Dans la classe générée, modifiez le fichier pour ajouter plusieurs personnes dans la base de données :
+
 ```php
 <?php
 

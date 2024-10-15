@@ -1,5 +1,5 @@
 
-# Extension du cas d'utilisation : Bonus
+# Extension du cas d'utilisation :
 
 ## Objectif
 L'objectif de cette extension est d'ajouter des fonctionnalités supplémentaires à l'application d'annuaire.
@@ -261,5 +261,4 @@ Accédez à l'URL `/annuaire/ajouter` et ajoutez une nouvelle personne.
 #### Vérification :
 Accédez à l'URL `/annuaire/recherche?nom=NomCherche` pour vérifier que la recherche fonctionne.
 
-### Conclusion
-Avec ces étapes, vous aurez ajouté plusieurs fonctionnalités bonus à votre application. Vous pouvez tester et valider chaque fonctionnalité au fur et à mesure pour vous assurer que tout fonctionne correctement.
+
