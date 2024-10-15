@@ -231,6 +231,7 @@ symfony console make:fixture PersonneFixtures
 ```
 
 Dans la classe générée, modifiez le fichier pour ajouter plusieurs personnes dans la base de données :
+
 ```php
 <?php
 
