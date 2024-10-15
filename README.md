@@ -226,6 +226,7 @@ composer require fakerphp/faker --dev
 ### 3. Créer une fixture pour l'entité `Personne`
 
 Créez une classe de fixture pour générer des données de test dans la base de données :
+
 ```bash
 symfony console make:fixture PersonneFixtures
 ```
