@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 # Extension du cas d'utilisation :
+=======
+# Extension du cas d'utilisation : 
+>>>>>>> 81d7267d22528a68007c5d623864e2da37aaaea6
 
 ## Objectif
 L'objectif de cette extension est d'ajouter des fonctionnalités supplémentaires à l'application d'annuaire.
