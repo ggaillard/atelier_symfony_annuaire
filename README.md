@@ -64,7 +64,7 @@ Maintenant que vous avez modélisé le cas d'utilisation de votre application, v
 
 Créez un nouveau projet Symfony avec la commande suivante :
 ```bash
-symfony new annuaire --full
+symfony new annuaire --webapp
 cd annuaire
 ```
 
